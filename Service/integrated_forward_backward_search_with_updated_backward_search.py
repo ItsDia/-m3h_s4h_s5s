@@ -102,10 +102,12 @@ def backward_search(pg, initial_concepts, goal_concepts):
     service_mapping = {}
     current_concepts = set(goal_concepts)
     initial = set(initial_concepts)
-    
+
     level = len(pg.a_levels) - 1
+    x = 300  # Initial x value
 
     while level >= 0:
+        y = 0  # Reset y value for each level
         tmp_level_concepts = set()
         services = set()
         for cpt in current_concepts:
@@ -116,8 +118,9 @@ def backward_search(pg, initial_concepts, goal_concepts):
 
         for serv in services:
             service_name_with_level = f"{serv.get_name()}-l{level}"
-            results["service"].append({"name": service_name_with_level})
+            results["service"].append({"name": service_name_with_level, "x": x, "y": y})
             service_mapping[(serv, level)] = service_name_with_level
+            y += 100  # Increase y value for each service in the same level
 
         current_concepts.clear()
         current_concepts.update(tmp_level_concepts)
@@ -125,6 +128,7 @@ def backward_search(pg, initial_concepts, goal_concepts):
         results["service"] = list({v['name']:v for v in results["service"]}.values())  # Remove duplicates
 
         level -= 1
+        x += 100  # Increase x value for each level
 
     # Create links
     for (service1, level1), name1 in service_mapping.items():
