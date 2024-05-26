@@ -1,0 +1,37 @@
+[
+    {
+        "name": "S1",
+        "input_concepts": "C3, C4",
+        "output_concepts": "C1"
+    },
+    {
+        "name": "S2",
+        "input_concepts": "C3",
+        "output_concepts": "C2"
+    },
+    {
+        "name": "S3",
+        "input_concepts": "C4, C5",
+        "output_concepts": "C6"
+    },
+    {
+        "name": "S4",
+        "input_concepts": "C1, C6",
+        "output_concepts": "C7"
+    },
+    {
+        "name": "S5",
+        "input_concepts": "C2, C6",
+        "output_concepts": "C8"
+    },
+    {
+        "name": "S6",
+        "input_concepts": "C7, C8",
+        "output_concepts": "C9"
+    },
+    {
+        "name": "S7",
+        "input_concepts": "C9",
+        "output_concepts": "C10"
+    }
+]

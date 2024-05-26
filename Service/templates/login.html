@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆界面</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+</head>
+<body>
+<div class="box">
+    <div class="box1">kkk</div>
+</div>
+
+def order(request):
+    form = serviceForm(request.POST or None)
+    if form.is_valid():
+        order = form.save(commit=False)
+        order.name=form.cleaned_data['name']
+        order.id=form.cleaned_data['id']
+        order.input_parameters=form.cleaned_data['input_parameters']
+        order.output_parameters=form.cleaned_data['output_parameters']
+        order.save()
+        return HttpResponse('恭喜提交成功')
+    return render(request, 'order.html',context={'form':form})
+
+    path('order/', views.order, name='order'),
+
+
+
+
+
+
+
+[ { "name": "S1", "input_concepts": "C3, C4", "output_concepts": "C1" }, { "name": "S2", "input_concepts": "C3", "output_concepts": "C2" }, { "name": "S3", "input_concepts": "C4, C5", "output_concepts": "C6" }, { "name": "S4", "input_concepts": "C1, C6", "output_concepts": "C7" }, { "name": "S5", "input_concepts": "C2, C6", "output_concepts": "C8" }, { "name": "S6", "input_concepts": "C7, C8", "output_concepts": "C9" }, { "name": "S7", "input_concepts": "C9", "output_concepts": "C10" } ]
+
+
+# 导入函数和模型
+# 导入导入函数
+from Service.task import import_service_data
+
+# 调用函数并传入 JSON 文件路径
+import_service_data('Service/services.json')
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/package.json' %}"></script>
+</body>
+</html>
